@@ -41,28 +41,6 @@ public class MessageSenderTest {
     }
 
     @Test
-    public void testSenderRuNotSuccess() {
-        Country country = Country.RUSSIA;
-        LocalizationService localizationService = Mockito.mock(LocalizationServiceImpl.class);
-        Mockito.when(localizationService.locale(country))
-                .thenReturn("Добро пожаловать");
-
-        GeoService geoService = Mockito.mock(GeoServiceImpl.class);
-        Mockito.when(geoService.byIp(MOSCOW_IP))
-                .thenReturn(new Location("Moscow", Country.RUSSIA, null, 0));
-
-        Map<String, String> headers = new HashMap<String, String>();
-        headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, MOSCOW_IP);
-
-        MessageSender messageSender = new MessageSenderImpl(geoService, localizationService);
-
-        String actual = messageSender.send(headers);
-
-        String expected = "Welcome";
-        Assertions.assertNotEquals(expected, actual);
-    }
-
-    @Test
     public void testSenderEnSuccess() {
         Country country = Country.USA;
         LocalizationService localizationService = Mockito.mock(LocalizationServiceImpl.class);
@@ -71,7 +49,7 @@ public class MessageSenderTest {
 
         GeoService geoService = Mockito.mock(GeoServiceImpl.class);
         Mockito.when(geoService.byIp(NEW_YORK_IP))
-                .thenReturn(new Location("New York", Country.USA, null,  0));
+                .thenReturn(new Location("New York", Country.USA, null, 0));
 
         Map<String, String> headers = new HashMap<String, String>();
         headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, NEW_YORK_IP);
@@ -82,28 +60,6 @@ public class MessageSenderTest {
 
         String expected = "Welcome";
         Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testSenderEnNotSuccess() {
-        Country country = Country.USA;
-        LocalizationService localizationService = Mockito.mock(LocalizationServiceImpl.class);
-        Mockito.when(localizationService.locale(country))
-                .thenReturn("Welcome");
-
-        GeoService geoService = Mockito.mock(GeoServiceImpl.class);
-        Mockito.when(geoService.byIp(NEW_YORK_IP))
-                .thenReturn(new Location("New York", Country.USA, null,  0));
-
-        Map<String, String> headers = new HashMap<String, String>();
-        headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, NEW_YORK_IP);
-
-        MessageSender messageSender = new MessageSenderImpl(geoService, localizationService);
-
-        String actual = messageSender.send(headers);
-
-        String expected = "Добро пожаловать";
-        Assertions.assertNotEquals(expected, actual);
     }
 
 }

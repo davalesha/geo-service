@@ -19,16 +19,7 @@ class LocalizationServiceTest {
         String expected = LOCALIZATION_SERVICE.locale(COUNTRY_RUSSIA);
 
         //then
-        Assertions.assertEquals(expected,ACTUAL_RUSSIA);
-    }
-
-    @Test
-    void testLocaleRussiaNotSuccess() {
-        //when
-        String expected = LOCALIZATION_SERVICE.locale(COUNTRY_RUSSIA);
-
-        //then
-        Assertions.assertNotEquals(expected,ACTUAL_USA);
+        Assertions.assertEquals(expected, ACTUAL_RUSSIA);
     }
 
     @Test
@@ -37,15 +28,8 @@ class LocalizationServiceTest {
         String expected = LOCALIZATION_SERVICE.locale(COUNTRY_USA);
 
         //then
-        Assertions.assertEquals(expected,ACTUAL_USA);
+        Assertions.assertEquals(expected, ACTUAL_USA);
     }
 
-    @Test
-    void testLocalUSANotSuccess() {
-        //when
-        String expected = LOCALIZATION_SERVICE.locale(COUNTRY_USA);
 
-        //then
-        Assertions.assertNotEquals(expected,ACTUAL_RUSSIA);
-    }
 }

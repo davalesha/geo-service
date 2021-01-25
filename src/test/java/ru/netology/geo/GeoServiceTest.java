@@ -14,22 +14,14 @@ public class GeoServiceTest {
    private final Location ACTUAL_USA = new Location("New York", Country.USA, " 10th Avenue", 32);
    private final Location ACTUAL_RUSSIA = new Location("Moscow", Country.RUSSIA, "Lenina", 15);
    private final GeoService geoService = new GeoServiceImpl();
-    @Test
+
+   @Test
     public void testByIpRuSuccess(){
         //when
         Location expected = geoService.byIp(MOSCOW_IP);
 
         //then
         assertEquals(expected,ACTUAL_RUSSIA);
-    }
-
-    @Test
-    public void testByIpRuNotSuccess(){
-        //when
-        Location expected = geoService.byIp(NEW_YORK_IP);
-
-        //then
-        assertNotEquals(expected,ACTUAL_RUSSIA);
     }
 
     @Test
@@ -41,12 +33,4 @@ public class GeoServiceTest {
         assertEquals(expected,ACTUAL_USA);
     }
 
-    @Test
-    public void testByIpUSANotSuccess(){
-        //when
-        Location expected = geoService.byIp(MOSCOW_IP);
-
-        //then
-        assertNotEquals(expected,ACTUAL_USA);
-    }
 }
